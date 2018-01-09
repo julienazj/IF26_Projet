@@ -38,14 +38,24 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func showAlert(withTitle title:String, andMessage message:String, choiceMode  mode:UIAlertControllerStyle) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: mode)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func modifier(_ sender: UIButton) {
-        database.tableEtudiantDeleteItem(Id: student.id)
-        database.tableStudentInsertItem(Id: Int(textId.text!)!, Nom: textNom.text!, Prenom: textPrenom.text!, Formation: textForm.text!, Tele: Int(textTele.text!)!)
+        if Int(textTele.text!) != nil{
+            database.tableEtudiantDeleteItem(Id: student.id)
+            database.tableStudentInsertItem(Id: Int(textId.text!)!, Nom: textNom.text!, Prenom: textPrenom.text!, Formation: textForm.text!, Tele: Int(textTele.text!)!)}
+        else {
+            self.showAlert(withTitle: "Oooops", andMessage:"Le type de Tele doit etre Int" , choiceMode: UIAlertControllerStyle.alert)
+        }
         
         
         
     }
+
     
     /*
     // MARK: - Navigation

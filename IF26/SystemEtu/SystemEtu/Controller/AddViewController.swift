@@ -25,9 +25,19 @@ class AddViewController: UIViewController {
         let Prenom = TextPrenom.text
         let Formation = TextFormation.text
         let Tele = Int(TextTele.text!)
-        database.tableStudentInsertItem(Id: EtuId!, Nom: Nom!, Prenom: Prenom!, Formation: Formation!, Tele: Tele!)
+        if Int(TextTele.text!) != nil{
+            database.tableStudentInsertItem(Id: EtuId!, Nom: Nom!, Prenom: Prenom!, Formation: Formation!, Tele: Tele!)}
+        else {
+            self.showAlert(withTitle: "Oooops", andMessage:"Le type de Tele doit etre Int" , choiceMode: UIAlertControllerStyle.alert)
+        }
+    
+    
         
-        
+    }
+    func showAlert(withTitle title:String, andMessage message:String, choiceMode  mode:UIAlertControllerStyle) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: mode)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     /*@IBAction func btnAdd(_ sender: UIButton) {

@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var TextPassWord: UITextField!
     
     @IBAction func btnLogin(_ sender: UIButton) {
-        if TextUsername.text == "123" && TextPassWord.text?.md5() == "123".md5(){
+        if TextUsername.text == "123" && TextPassWord.text?.md5() == "202cb962ac59075b964b07152d234b70"{
             self.performSegue(withIdentifier: "Login", sender: self)
         }else{
             self.showAlert(withTitle: "Ooops", andMessage: "Fail to Connection", choiceMode: UIAlertControllerStyle.alert)
@@ -49,6 +49,7 @@ class LoginViewController: UIViewController {
         let pwd = "123"
         let pwd_hash = md5(pwd)
         print(pwd_hash)
+        self.TextPassWord.isSecureTextEntry = true
         XLXContact().getContacts()
         //print("result:"+ pwd.MD5());
 

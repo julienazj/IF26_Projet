@@ -31,9 +31,9 @@ struct Database {
         
     }
     
-    // ===================================== 灯光 =====================================
-    let TABLE_Student = Table("table_Student") // 表名称
-    let TABLE_Student_ID = Expression<Int>("Student_Id") // 列表项及项类型
+    // ===================================== Student =====================================
+    let TABLE_Student = Table("table_Student") // Nom de table
+    let TABLE_Student_ID = Expression<Int>("Student_Id") // Attribut
     let TABLE_Student_NOM = Expression<String>("Student_Nom")
     let TABLE_Student_PRENOM = Expression<String>("Student_Prenom")
     let TABLE_Student_FORMATION = Expression<String>("Student_FORMATION")
@@ -52,19 +52,19 @@ struct Database {
         }
     }
     
-    // 建表
+    // Set Table
     func tableStudentCreate() -> Void {
-        do { // 创建表TABLE_LAMP
+        do { // Create table
             try db.run(TABLE_Student.create { table in
-                table.column(TABLE_Student_ID, primaryKey: .autoincrement) // 主键自加且不为空
+                table.column(TABLE_Student_ID, primaryKey: .autoincrement) // primaryKey
                 table.column(TABLE_Student_NOM)
                 table.column(TABLE_Student_PRENOM)
                 table.column(TABLE_Student_FORMATION)
                 table.column(TABLE_Student_TELE)
             })
-            print("创建表 TABLE_Student 成功")
+            print("Create TABLE_Student Success")
         } catch {
-            print("创建表 TABLE_Student 失败：\(error)")
+            print("Create TABLE_Student Fail：\(error)")
         }
     }
     
@@ -73,9 +73,9 @@ struct Database {
         let insert = TABLE_Student.insert(TABLE_Student_ID <- Id, TABLE_Student_NOM <- Nom, TABLE_Student_PRENOM <- Prenom, TABLE_Student_FORMATION <- Formation, TABLE_Student_TELE <- Tele)
         do {
             let rowid = try db.run(insert)
-            print("插入数据成功 id: \(rowid)")
+            print("Insert success id: \(rowid)")
         } catch {
-            print("插入数据失败: \(error)")
+            print("Insert fail id: \(error)")
         }
     }
     
@@ -141,12 +141,12 @@ struct Database {
         let item = TABLE_Student.filter(TABLE_Student_ID == Id)
         do {
             if try db.run(item.delete()) > 0 {
-                print("Student\(Id) 删除成功")
+                print("Student\(Id) delata successful")
             } else {
-                print("没有发现 灯光条目 \(Id)")
+                print("No data \(Id)")
             }
         } catch {
-            print("灯光\(Id) 删除失败：\(error)")
+            print("data\(Id) delata fail：\(error)")
         }
     }
 }

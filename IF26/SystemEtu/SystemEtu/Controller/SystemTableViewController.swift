@@ -14,7 +14,8 @@ class SystemTableViewController: UITableViewController {
     //var db = dbEtu()
     var arEtu:[Etudent] = []
     let database = Database()
-    
+
+
 
     override func viewDidLoad() {
         //let database = Database()
@@ -71,7 +72,7 @@ class SystemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "etudiant", for: indexPath)
         cell.textLabel?.text = "\(arEtu[indexPath.row].nom)"
-        cell.detailTextLabel?.text = "id: \(arEtu[indexPath.row].id) Prenom: \(arEtu[indexPath.row].prenom) formation: \(arEtu[indexPath.row].formation)"
+        cell.detailTextLabel?.text = "id: \(arEtu[indexPath.row].id) Prenom: \(arEtu[indexPath.row].prenom)"
         return cell
     }
     
@@ -101,6 +102,7 @@ class SystemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "etuToDetail", sender: self.arEtu[indexPath.row])
     }
+
 
 
     
